@@ -109,7 +109,6 @@ ament_target_dependencies(g1_dex3_example ${DEPENDENCY_LIST})
 target_include_directories(g1_dex3_example PRIVATE ${EIGEN3_INCLUDE_DIR})
 ament_target_dependencies(g1_loco_client_example ${DEPENDENCY_LIST})
 ament_target_dependencies(g1_high_level_ros2 ${DEPENDENCY_LIST})
-ament_target_dependencies(ros2serial ${DEPENDENCY_LIST})
 ament_target_dependencies(g1_ankle_swing_example ${DEPENDENCY_LIST})
 
 ament_target_dependencies(g1_audio_client_example ${DEPENDENCY_LIST})
@@ -153,7 +152,6 @@ install(TARGETS g1_loco_client_example)
 install(TARGETS g1_ankle_swing_example)
 install(TARGETS 
         g1_high_level_ros2 
-        ros2serial
         DESTINATION lib/${PROJECT_NAME})
 
 
