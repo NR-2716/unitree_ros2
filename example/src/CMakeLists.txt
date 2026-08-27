@@ -68,6 +68,12 @@ target_compile_features(g1_dex3_example PRIVATE cxx_std_20)
 add_executable(g1_loco_client_example src/g1/high_level/loco_client_example.cpp src/common/motor_crc.cpp)
 target_compile_features(g1_loco_client_example PRIVATE cxx_std_20)
 
+add_executable(g1_high_level_ros2 src/g1/high_level/g1_high_level_ros2.cpp src/common/motor_crc.cpp)
+target_compile_features(g1_high_level_ros2 PRIVATE cxx_std_20)
+
+add_executable(ros2serial src/common/ros2serial.cpp)
+target_compile_features(ros2serial PRIVATE cxx_std_20)
+
 add_executable(g1_ankle_swing_example src/g1/lowlevel/g1_ankle_swing_example.cpp src/common/motor_crc_hg.cpp)
 target_compile_features(g1_ankle_swing_example PRIVATE cxx_std_20)
 
@@ -85,12 +91,6 @@ target_compile_features(b2_stand_example PRIVATE cxx_std_20)
 
 add_executable(b2_sport_client src/b2/b2_sport_client.cpp src/common/ros2_b2_sport_client.cpp)
 target_compile_features(b2_sport_client PRIVATE cxx_std_20)
-
-add_executable(h2_loco_client src/h2/high_level/h2_loco_client.cpp)
-target_compile_features(h2_loco_client PRIVATE cxx_std_20)
-
-add_executable(h2_ankle_swing_example src/h2/low_level/h2_ankle_swing_example.cpp src/common/motor_crc_hg.cpp)
-target_compile_features(h2_ankle_swing_example PRIVATE cxx_std_20)
 
 
 ament_target_dependencies(low_level_ctrl ${DEPENDENCY_LIST})
@@ -111,6 +111,8 @@ ament_target_dependencies(g1_arm_action_example ${DEPENDENCY_LIST})
 ament_target_dependencies(g1_dex3_example ${DEPENDENCY_LIST})
 target_include_directories(g1_dex3_example PRIVATE ${EIGEN3_INCLUDE_DIR})
 ament_target_dependencies(g1_loco_client_example ${DEPENDENCY_LIST})
+ament_target_dependencies(g1_high_level_ros2 ${DEPENDENCY_LIST})
+ament_target_dependencies(ros2serial ${DEPENDENCY_LIST})
 ament_target_dependencies(g1_ankle_swing_example ${DEPENDENCY_LIST})
 
 ament_target_dependencies(g1_audio_client_example ${DEPENDENCY_LIST})
@@ -120,9 +122,6 @@ ament_target_dependencies(b2w_stand_example ${DEPENDENCY_LIST})
 
 ament_target_dependencies(b2_sport_client ${DEPENDENCY_LIST})
 ament_target_dependencies(b2_stand_example ${DEPENDENCY_LIST})
-
-ament_target_dependencies(h2_loco_client ${DEPENDENCY_LIST})
-ament_target_dependencies(h2_ankle_swing_example ${DEPENDENCY_LIST})
 
 find_package(yaml-cpp QUIET)
 if(yaml-cpp_FOUND)
@@ -155,6 +154,11 @@ install(TARGETS g1_arm_action_example)
 install(TARGETS g1_dex3_example)
 install(TARGETS g1_loco_client_example)
 install(TARGETS g1_ankle_swing_example)
+install(TARGETS 
+        g1_high_level_ros2 
+        ros2serial
+        DESTINATION lib/${PROJECT_NAME})
+
 
 if(yaml-cpp_FOUND)
     if (${yaml-cpp_VERSION} VERSION_GREATER_EQUAL "0.6")
@@ -163,9 +167,6 @@ if(yaml-cpp_FOUND)
 endif()
 
 install(TARGETS g1_audio_client_example)
-
-install(TARGETS h2_loco_client)
-install(TARGETS h2_ankle_swing_example)
 
 
 
