@@ -71,9 +71,6 @@ target_compile_features(g1_loco_client_example PRIVATE cxx_std_20)
 add_executable(g1_high_level_ros2 src/g1/high_level/g1_high_level_ros2.cpp src/common/motor_crc.cpp)
 target_compile_features(g1_high_level_ros2 PRIVATE cxx_std_20)
 
-add_executable(ros2serial src/common/ros2serial.cpp)
-target_compile_features(ros2serial PRIVATE cxx_std_20)
-
 add_executable(g1_ankle_swing_example src/g1/lowlevel/g1_ankle_swing_example.cpp src/common/motor_crc_hg.cpp)
 target_compile_features(g1_ankle_swing_example PRIVATE cxx_std_20)
 
